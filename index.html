@@ -1,123 +1,125 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <title>Domanda speciale 💘</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #ff758c, #ff7eb3);
-      height: 100vh;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+<meta charset="UTF-8">
+<title>Domanda speciale 💘</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    .container {
-      position: relative;
-      width: 600px;
-      max-width: 90%;
-      height: 300px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      padding: 20px;
-    }
+.container {
+  position: relative;
+  width: 600px;
+  max-width: 90%;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* impedisce di uscire */
+  padding: 20px;
+}
 
-    h1 {
-      color: white;
-      text-align: center;
-      margin-bottom: 40px;
-      font-size: 1.8em;
-    }
+h1 {
+  color: white;
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 1.8em;
+}
 
-    button {
-      font-size: 1.2em;
-      padding: 12px 25px;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      transition: transform 0.1s;
-      position: absolute;
-    }
+button {
+  font-size: 1.2em;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  transition: transform 0.1s;
+  position: absolute;
+}
 
-    #yes {
-      background-color: #22c55e;
-      color: white;
-      left: 30%;
-      top: 60%;
-    }
+#yes {
+  background-color: #22c55e;
+  color: white;
+  left: 30%;
+  top: 60%;
+}
 
-    #no {
-      background-color: #ef4444;
-      color: white;
-      left: 60%;
-      top: 60%;
-    }
-  </style>
+#no {
+  background-color: #ef4444;
+  color: white;
+  left: 60%;
+  top: 60%;
+}
+</style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>Giada, vuoi venire a zappare la vigna con me a San Valentino? 💖</h1>
-    <button id="yes" onclick="yesClicked()">Sì 💘</button>
-    <button id="no">No 😅</button>
-  </div>
+<div class="container">
+  <h1>Giada, vuoi venire a zappare la vigna con me a San Valentino? 💖</h1>
+  <button id="yes" onclick="yesClicked()">Sì 💘</button>
+  <button id="no">No 😅</button>
+</div>
 
-  <script>
-    const container = document.querySelector('.container');
-    const noButton = document.getElementById("no");
-    const yesButton = document.getElementById("yes");
+<script>
+const container = document.querySelector('.container');
+const noButton = document.getElementById("no");
+const yesButton = document.getElementById("yes");
 
-    // NO che si muove solo dentro il container
-    noButton.addEventListener("mouseenter", () => {
-      const containerWidth = container.clientWidth;
-      const containerHeight = container.clientHeight;
-      const btnWidth = noButton.offsetWidth;
-      const btnHeight = noButton.offsetHeight;
+// NO che si muove solo dentro la container
+noButton.addEventListener("mouseenter", () => {
+  const containerRect = container.getBoundingClientRect();
+  const btnWidth = noButton.offsetWidth;
+  const btnHeight = noButton.offsetHeight;
+  
+  // calcolo del range visibile dentro container
+  const minX = 0;
+  const minY = 0;
+  const maxX = container.clientWidth - btnWidth;
+  const maxY = container.clientHeight - btnHeight;
 
-      const minY = 40; // lascia spazio al titolo
-      const maxX = containerWidth - btnWidth;
-      const maxY = containerHeight - btnHeight;
+  // posizione casuale dentro il container
+  const randomX = minX + Math.random() * maxX;
+  const randomY = minY + Math.random() * maxY;
 
-      const randomX = Math.random() * maxX;
-      const randomY = minY + Math.random() * (maxY - minY);
+  noButton.style.left = randomX + "px";
+  noButton.style.top = randomY + "px";
+});
 
-      noButton.style.left = randomX + "px";
-      noButton.style.top = randomY + "px";
-    });
+// SÌ che trema
+yesButton.addEventListener("mouseenter", () => {
+  const offset = 5;
+  const randomX = (Math.random() * offset * 2) - offset;
+  const randomY = (Math.random() * offset * 2) - offset;
+  yesButton.style.transform = `translate(${randomX}px, ${randomY}px)`;
+});
 
-    // SÌ che trema
-    yesButton.addEventListener("mouseenter", () => {
-      const offset = 5;
-      const randomX = (Math.random() * offset * 2) - offset;
-      const randomY = (Math.random() * offset * 2) - offset;
-      yesButton.style.transform = `translate(${randomX}px, ${randomY}px)`;
-    });
+yesButton.addEventListener("mouseleave", () => {
+  yesButton.style.transform = "translate(0,0)";
+});
 
-    yesButton.addEventListener("mouseleave", () => {
-      yesButton.style.transform = "translate(0,0)";
-    });
-
-    // Funzione clic SÌ con foto
-    function yesClicked() {
-      document.body.innerHTML = `
-        <div style="text-align:center; color:white;">
-          <h1>
-            Sapevo che avresti detto sì 💕<br><br>
-            Non vedo l'ora di zappare la vigna con te, Giada 🥰
-          </h1>
-          <img src="giada.jpg" alt="Giada" style="max-width:80%; margin-top:20px; border-radius:15px; box-shadow: 0 5px 20px rgba(0,0,0,0.3);">
-        </div>
-      `;
-    }
-  </script>
+// Funzione clic SÌ con foto
+function yesClicked() {
+  document.body.innerHTML = `
+    <div style="text-align:center; color:white;">
+      <h1>
+        Sapevo che avresti detto sì 💕<br><br>
+        Non vedo l'ora di zappare la vigna con te, Giada 🥰
+      </h1>
+      <img src="giada.jpg" alt="Giada" style="max-width:80%; margin-top:20px; border-radius:15px; box-shadow: 0 5px 20px rgba(0,0,0,0.3);">
+    </div>
+  `;
+}
+</script>
 
 </body>
 </html>
