@@ -67,19 +67,22 @@
     const noButton = document.getElementById("no");
     const yesButton = document.getElementById("yes");
 
-    // Bottone NO che scappa senza sparire dallo schermo
-    noButton.addEventListener("mouseenter", () => {
-      const padding = 20; // margine dai bordi
-      const maxX = window.innerWidth - noButton.offsetWidth - padding;
-      const maxY = window.innerHeight - noButton.offsetHeight - padding;
+    
 
-      const randomX = padding + Math.random() * maxX;
-      const randomY = padding + Math.random() * maxY;
+// Bottone NO che scappa senza sparire mai
+noButton.addEventListener("mouseenter", () => {
+  const padding = 20; // margine dai bordi
 
-      noButton.style.left = randomX + "px";
-      noButton.style.top = randomY + "px";
-    });
+  const maxX = window.innerWidth - noButton.offsetWidth - padding;
+  const maxY = window.innerHeight - noButton.offsetHeight - padding;
 
+  const randomX = padding + Math.random() * maxX;
+  const randomY = padding + Math.random() * maxY;
+
+  noButton.style.position = "fixed"; // <-- IMPORTANTE: posizione fissa rispetto allo schermo
+  noButton.style.left = randomX + "px";
+  noButton.style.top = randomY + "px";
+});
     // Bottone SÌ che trema leggermente
     yesButton.addEventListener("mouseenter", () => {
       const offset = 5; // massimo spostamento in px
