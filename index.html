@@ -75,6 +75,19 @@ const container = document.querySelector('.container');
 const noButton = document.getElementById("no");
 const yesButton = document.getElementById("yes");
 
+function noClicked() {
+  document.body.innerHTML = `
+    <div style="text-align:center; color:white;">
+      <h1>
+        Mi spieghi come cazzo hai fatto a cliccare sul no? ☺️<br><br>
+        E come cazzo ti sei permessa? ☺️
+      </h1>
+      <img src="giada.jpg" alt="Giada" style="max-width:80%; margin-top:20px; border-radius:15px; box-shadow: 0 5px 20px rgba(0,0,0,0.3);">
+    </div>
+  `;
+}
+
+  
 // NO che si muove solo dentro la container
 noButton.addEventListener("mouseenter", () => {
   const containerRect = container.getBoundingClientRect();
