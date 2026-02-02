@@ -86,16 +86,17 @@
 
     // Bottone NO che si muove solo dentro il container
     noButton.addEventListener("mouseenter", () => {
-      const containerRect = container.getBoundingClientRect();
+      const containerWidth = container.clientWidth;
+      const containerHeight = container.clientHeight;
       const btnWidth = noButton.offsetWidth;
       const btnHeight = noButton.offsetHeight;
 
-      // calcola limiti dentro il container
-      const maxX = containerRect.width - btnWidth;
-      const maxY = containerRect.height - btnHeight - 40; // lascia spazio per il testo
+      const paddingTop = 40; // lascia spazio sotto il titolo
+      const maxX = containerWidth - btnWidth;
+      const maxY = containerHeight - btnHeight - paddingTop;
 
       const randomX = Math.random() * maxX;
-      const randomY = 40 + Math.random() * maxY; // parte sotto il titolo
+      const randomY = paddingTop + Math.random() * maxY;
 
       noButton.style.left = randomX + "px";
       noButton.style.top = randomY + "px";
@@ -113,13 +114,16 @@
       yesButton.style.transform = "translate(0,0)";
     });
 
-    // Funzione clic SÌ
+    // Funzione clic SÌ con foto
     function yesClicked() {
       document.body.innerHTML = `
-        <h1 style="color:white; text-align:center;">
-          Sapevo che avresti detto sì 💕<br><br>
-          Non vedo l'ora di zappare la vigna con te, Giada 🥰
-        </h1>
+        <div style="text-align:center; color:white;">
+          <h1>
+            Sapevo che avresti detto sì 💕<br><br>
+            Non vedo l'ora di zappare la vigna con te, Giada 🥰
+          </h1>
+          <img src="giada.jpg" alt="Giada" style="max-width:80%; margin-top:20px; border-radius:15px; box-shadow: 0 5px 20px rgba(0,0,0,0.3);">
+        </div>
       `;
     }
   </script>
