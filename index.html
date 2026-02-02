@@ -82,17 +82,50 @@ noButton.addEventListener("mouseenter", () => {
   const contWidth = container.clientWidth;
   const contHeight = container.clientHeight;
 
-  // calcola posizione casuale dentro container
-  const minY = 40; // spazio per il titolo
   const randomX = Math.random() * (contWidth - btnWidth);
-  const randomY = minY + Math.random() * (contHeight - btnHeight - minY);
+  const randomY = 40 + Math.random() * (contHeight - btnHeight - 40); // spazio titolo
 
   noButton.style.left = randomX + "px";
   noButton.style.top = randomY + "px";
 });
 
-// SÌ che trema leggermente
+// SÌ che trema
 yesButton.addEventListener("mouseenter", () => {
   const offset = 5;
   const randomX = (Math.random() * offset * 2) - offset;
-  const randomY = (Math
+  const randomY = (Math.random() * offset * 2) - offset;
+  yesButton.style.transform = `translate(${randomX}px, ${randomY}px)`;
+});
+
+yesButton.addEventListener("mouseleave", () => {
+  yesButton.style.transform = "translate(0,0)";
+});
+
+// Funzione clic SÌ con foto
+function yesClicked() {
+  document.body.innerHTML = `
+    <div style="text-align:center; color:white;">
+      <h1>
+        Sapevo che avresti detto sì 💕<br><br>
+        Si prega di venire con questo outfit, Giada 🥰
+      </h1>
+      <img src="giada.jpg" alt="Giada" style="max-width:80%; margin-top:20px; border-radius:15px; box-shadow: 0 5px 20px rgba(0,0,0,0.3);">
+    </div>
+  `;
+}
+
+// Funzione clic NO senza foto
+function noClicked() {
+  document.body.innerHTML = `
+    <div style="text-align:center; color:white;">
+      <h1>
+        Mi spieghi come cazzo hai fatto a cliccare sul no? ☺️<br><br>
+        E come cazzo ti sei permessa? ☺️
+      </h1>
+    </div>
+  `;
+}
+</script>
+
+</body>
+</html>
