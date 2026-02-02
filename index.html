@@ -2,36 +2,89 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Il sito di Joseph</title>
+  <title>Una domanda importante 💘</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: #e5e7eb;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
       height: 100vh;
       margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
     }
-    .box {
-      text-align: center;
-      max-width: 600px;
-    }
+
     h1 {
+      color: white;
       font-size: 3em;
+      text-align: center;
+      margin-bottom: 60px;
     }
-    p {
+
+    .buttons {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    button {
       font-size: 1.2em;
-      opacity: 0.8;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    #yes {
+      background-color: #22c55e;
+      color: white;
+    }
+
+    #no {
+      background-color: #ef4444;
+      color: white;
+      position: absolute;
     }
   </style>
 </head>
 <body>
-  <div class="box">
-    <h1>Ciao, sono Joseph 👋</h1>
-    <p>Questo è il mio primo sito online con GitHub Pages.</p>
-    <p>In costruzione 🧠⚙️</p>
+
+  <h1>Vuoi passare San Valentino con me? 💖</h1>
+
+  <div class="buttons">
+    <button id="yes" onclick="yesClicked()">Sì 💘</button>
+    <button id="no">No 😅</button>
   </div>
+
+  <script>
+    const noButton = document.getElementById("no");
+
+    noButton.addEventListener("mouseenter", () => {
+      const maxX = window.innerWidth - noButton.offsetWidth;
+      const maxY = window.innerHeight - noButton.offsetHeight;
+
+      const randomX = Math.random() * maxX;
+      const randomY = Math.random() * maxY;
+
+      noButton.style.left = randomX + "px";
+      noButton.style.top = randomY + "px";
+    });
+
+    function yesClicked() {
+      document.body.innerHTML = `
+        <h1 style="color:white; text-align:center;">
+          Sapevo che avresti detto sì 💕<br><br>
+          Buon San Valentino 🥰
+        </h1>
+      `;
+    }
+  </script>
+
 </body>
 </html>
