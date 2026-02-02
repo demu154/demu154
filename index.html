@@ -83,7 +83,7 @@ noButton.addEventListener("mouseenter", () => {
   const contHeight = container.clientHeight;
 
   const randomX = Math.random() * (contWidth - btnWidth);
-  const randomY = 40 + Math.random() * (contHeight - btnHeight - 40); // spazio titolo
+  const randomY = 40 + Math.random() * (contHeight - btnHeight - 40);
 
   noButton.style.left = randomX + "px";
   noButton.style.top = randomY + "px";
@@ -101,15 +101,19 @@ yesButton.addEventListener("mouseleave", () => {
   yesButton.style.transform = "translate(0,0)";
 });
 
-// Funzione clic SÌ con foto
+// Funzione clic SÌ con link cliccabile alla foto
 function yesClicked() {
   document.body.innerHTML = `
     <div style="text-align:center; color:white;">
       <h1>
         Sapevo che avresti detto sì 💕<br><br>
-        Si prega di venire con questo outfit, Giada 🥰
+        Non vedo l'ora di zappare la vigna con te, Giada 🥰
       </h1>
-      <img src="https://imgur.com/a/L1EaQb7" alt="Giada" style="max-width:80%; margin-top:20px; border-radius:15px; box-shadow: 0 5px 20px rgba(0,0,0,0.3);">
+      <p>
+        <a href="https://imgur.com/a/L1EaQb7" target="_blank" style="color:#fff; text-decoration:underline; font-size:1.2em;">
+          Clicca qui per vedere la sorpresa 💖
+        </a>
+      </p>
     </div>
   `;
 }
