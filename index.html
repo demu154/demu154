@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Una domanda importante 💘</title>
+  <title>Domanda speciale 💘</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -18,7 +18,7 @@
 
     h1 {
       color: white;
-      font-size: 3em;
+      font-size: 2.8em;
       text-align: center;
       margin-bottom: 60px;
     }
@@ -39,6 +39,7 @@
       border-radius: 12px;
       cursor: pointer;
       box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: transform 0.1s;
     }
 
     #yes {
@@ -55,7 +56,7 @@
 </head>
 <body>
 
-  <h1>Vuoi passare San Valentino con me? 💖</h1>
+  <h1>Giada, vuoi venire a zappare la vigna con me a San Valentino? 💖</h1>
 
   <div class="buttons">
     <button id="yes" onclick="yesClicked()">Sì 💘</button>
@@ -64,7 +65,9 @@
 
   <script>
     const noButton = document.getElementById("no");
+    const yesButton = document.getElementById("yes");
 
+    // Bottone NO che scappa
     noButton.addEventListener("mouseenter", () => {
       const maxX = window.innerWidth - noButton.offsetWidth;
       const maxY = window.innerHeight - noButton.offsetHeight;
@@ -76,11 +79,25 @@
       noButton.style.top = randomY + "px";
     });
 
+    // Bottone SÌ che trema leggermente
+    yesButton.addEventListener("mouseenter", () => {
+      const offset = 5; // massimo spostamento in px
+      const randomX = (Math.random() * offset * 2) - offset;
+      const randomY = (Math.random() * offset * 2) - offset;
+
+      yesButton.style.transform = `translate(${randomX}px, ${randomY}px)`;
+    });
+
+    yesButton.addEventListener("mouseleave", () => {
+      yesButton.style.transform = "translate(0,0)";
+    });
+
+    // Funzione clic SÌ
     function yesClicked() {
       document.body.innerHTML = `
         <h1 style="color:white; text-align:center;">
           Sapevo che avresti detto sì 💕<br><br>
-          Buon San Valentino 🥰
+          Non vedo l'ora di zappare la vigna con te, Giada 🥰
         </h1>
       `;
     }
