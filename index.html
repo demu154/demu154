@@ -25,7 +25,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      overflow: hidden; /* il NO non può uscire */
+      overflow: hidden;
       padding: 20px;
     }
 
@@ -36,15 +36,6 @@
       font-size: 1.8em;
     }
 
-    .buttons {
-      position: relative;
-      width: 100%;
-      height: 80px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
     button {
       font-size: 1.2em;
       padding: 12px 25px;
@@ -53,19 +44,21 @@
       cursor: pointer;
       box-shadow: 0 5px 15px rgba(0,0,0,0.2);
       transition: transform 0.1s;
-      position: absolute; /* per poterli spostare */
+      position: absolute;
     }
 
     #yes {
       background-color: #22c55e;
       color: white;
-      left: 40%; /* posizione iniziale */
+      left: 30%;
+      top: 60%;
     }
 
     #no {
       background-color: #ef4444;
       color: white;
-      left: 60%; /* posizione iniziale */
+      left: 60%;
+      top: 60%;
     }
   </style>
 </head>
@@ -73,10 +66,8 @@
 
   <div class="container">
     <h1>Giada, vuoi venire a zappare la vigna con me a San Valentino? 💖</h1>
-    <div class="buttons">
-      <button id="yes" onclick="yesClicked()">Sì 💘</button>
-      <button id="no">No 😅</button>
-    </div>
+    <button id="yes" onclick="yesClicked()">Sì 💘</button>
+    <button id="no">No 😅</button>
   </div>
 
   <script>
@@ -84,25 +75,25 @@
     const noButton = document.getElementById("no");
     const yesButton = document.getElementById("yes");
 
-    // Bottone NO che si muove solo dentro il container
+    // NO che si muove solo dentro il container
     noButton.addEventListener("mouseenter", () => {
       const containerWidth = container.clientWidth;
       const containerHeight = container.clientHeight;
       const btnWidth = noButton.offsetWidth;
       const btnHeight = noButton.offsetHeight;
 
-      const paddingTop = 40; // lascia spazio sotto il titolo
+      const minY = 40; // lascia spazio al titolo
       const maxX = containerWidth - btnWidth;
-      const maxY = containerHeight - btnHeight - paddingTop;
+      const maxY = containerHeight - btnHeight;
 
       const randomX = Math.random() * maxX;
-      const randomY = paddingTop + Math.random() * maxY;
+      const randomY = minY + Math.random() * (maxY - minY);
 
       noButton.style.left = randomX + "px";
       noButton.style.top = randomY + "px";
     });
 
-    // Bottone SÌ che trema leggermente
+    // SÌ che trema
     yesButton.addEventListener("mouseenter", () => {
       const offset = 5;
       const randomX = (Math.random() * offset * 2) - offset;
